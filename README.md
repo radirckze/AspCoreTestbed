@@ -1,7 +1,7 @@
 # AspCoreTestbed  
 
 ### Next steps (TBD):
-Completed: EF Core (DB frist) setup, ASP Core, Repository / UOW pattern, MS Test setup. 
+Completed: EF Core (DB frist) setup, ASP Core, Repository / UOW pattern, MS Test setup.   
 Todo: MVC with Anguar / JQuery front end, MVC routing (explicit) , IOC/DI for testing / logging 
  
 
