@@ -73,10 +73,10 @@ namespace DAL.Repositories
             context.Entry(movie).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
         }
         
-        public void Save() {
+        //public void Save() {
 
-            context.SaveChanges();
-        }
+        //    context.SaveChanges();
+        //}
 
         protected virtual void Dispose(bool disposing)
         {

@@ -12,6 +12,7 @@ namespace DAL
 
         private MovieBuffContext mbContext = new MovieBuffContext();
         private IMovieRepository movieRepository = null;
+        private IGenericRepository<Character> characterRepository = null;
         private bool disposed = false;
 
         public IMovieRepository MovieRepository
@@ -25,6 +26,24 @@ namespace DAL
 
                 return movieRepository;
             }
+        }
+
+        public IGenericRepository<Character> CharacterRepository
+        {
+            get
+            {
+                if (characterRepository == null)
+                {
+                    characterRepository = new GenericRepository<Character>(mbContext);
+                }
+
+                return characterRepository;
+            }
+        }
+
+        public void Save()
+        {
+            mbContext.SaveChanges();
         }
 
         protected virtual void Dispose(bool disposing)

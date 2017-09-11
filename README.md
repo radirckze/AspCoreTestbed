@@ -1,10 +1,8 @@
 # AspCoreTestbed  
 
 ### Next steps (TBD):
-Today: updating model, unit test project.
-using EF db first, update model, Repo/UOW pattern,  MVC with JQuery front end, MVC routing
-Wed / Thurs / Repo / UOW pattern, MVC JQuery front end, Exolicit routing. 
-Use DI for logging. 
+Completed: EF Core (DB frist) setup, ASP Core, Repository / UOW pattern, MS Test setup. 
+Todo: MVC with Anguar / JQuery front end, MVC routing (explicit) , IOC/DI for testing / logging 
  
 
 This project is used to test various ASP .NET code related stuff, including:  

@@ -13,7 +13,7 @@ namespace DAL.Interfaces
         Movie AddMovie(Movie movie);
         void UpdateMovie(Movie movie);
         void DeleteMovie(int movieId);
-        void Save();
+        //void Save();
     }
     
 }

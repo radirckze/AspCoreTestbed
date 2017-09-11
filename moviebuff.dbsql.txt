@@ -1,10 +1,7 @@
-
--- SQL generated from Microsoft SQL Server Management Studio.
-
 USE [moviebuff]
 GO
 
-/****** Object:  Table [dbo].[movie]    Script Date: 9/7/2017 5:49:08 PM ******/
+/****** Object:  Table [dbo].[movie]    Script Date: 9/11/2017 11:30:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -20,13 +17,13 @@ CREATE TABLE [dbo].[movie](
 ) ON [PRIMARY]
 GO
 
-/****** Object:  Table [dbo].[character]    Script Date: 9/7/2017 5:49:08 PM ******/
+/****** Object:  Table [dbo].[character]    Script Date: 9/11/2017 11:30:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[character](
-	[id] [int] NOT NULL,
+	[id] [int] IDENTITY(1,1) NOT NULL,
 	[name] [nvarchar](30) NOT NULL,
  CONSTRAINT [PK_character] PRIMARY KEY CLUSTERED 
 (
@@ -35,24 +32,13 @@ CREATE TABLE [dbo].[character](
 ) ON [PRIMARY]
 GO
 
-/****** Object:  Table [dbo].[appears_in]    Script Date: 9/7/2017 5:49:08 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[appears_in](
-	[movie_id] [int] NOT NULL,
-	[character_id] [int] NOT NULL
-) ON [PRIMARY]
-GO
-
-/****** Object:  Table [dbo].[quote]    Script Date: 9/7/2017 5:49:08 PM ******/
+/****** Object:  Table [dbo].[quote]    Script Date: 9/11/2017 11:30:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[quote](
-	[id] [int] NOT NULL,
+	[id] [int] IDENTITY(1,1) NOT NULL,
 	[quote] [nvarchar](512) NOT NULL,
 	[character_id] [int] NOT NULL,
 	[movie_id] [int] NOT NULL,
@@ -62,22 +48,6 @@ CREATE TABLE [dbo].[quote](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
-/****** Object:  Table [dbo].[errlog]    Script Date: 9/7/2017 5:49:08 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[errlog](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[message] [nvarchar](1000) NOT NULL,
- CONSTRAINT [PK_errlog] PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
 ALTER TABLE [dbo].[appears_in]  WITH CHECK ADD  CONSTRAINT [FK_appears_in_character] FOREIGN KEY([character_id])
 REFERENCES [dbo].[character] ([id])
 GO
@@ -97,4 +67,30 @@ ALTER TABLE [dbo].[quote]  WITH CHECK ADD  CONSTRAINT [FK_movie_quote] FOREIGN K
 REFERENCES [dbo].[movie] ([id])
 GO
 ALTER TABLE [dbo].[quote] CHECK CONSTRAINT [FK_movie_quote]
+GO
+
+/****** Object:  Table [dbo].[appears_in]    Script Date: 9/11/2017 11:30:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[appears_in](
+	[movie_id] [int] NOT NULL,
+	[character_id] [int] NOT NULL
+) ON [PRIMARY]
+GO
+
+/****** Object:  Table [dbo].[errlog]    Script Date: 9/11/2017 11:30:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[errlog](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[message] [nvarchar](1000) NOT NULL,
+ CONSTRAINT [PK_errlog] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO

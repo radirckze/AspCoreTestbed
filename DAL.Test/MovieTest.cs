@@ -26,14 +26,14 @@ namespace DAL.Test
             movieRepo = unitOfWork.MovieRepository;
 
             movieJP = movieRepo.AddMovie(new Movie() { Name = jurassicPark, Rating = 4 });
-            movieRepo.Save();
+            unitOfWork.Save();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
             movieRepo.DeleteMovie(movieJP.Id);
-            movieRepo.Save();
+            unitOfWork.Save();
         }
 
         [TestMethod]
@@ -55,12 +55,12 @@ namespace DAL.Test
         {
             Movie movie = new Movie() { Name = jurassicWorld, Rating = 4 };
             movieRepo.AddMovie(movie);
-            movieRepo.Save();
+            unitOfWork.Save();
             movie = movieRepo.GetMovieByName(jurassicWorld);
             if (movie.Id > 0 )
             {
                 movieRepo.DeleteMovie(movie.Id);
-                movieRepo.Save();
+                unitOfWork.Save();
             }
             Assert.IsTrue(movie != null && movie.Id > 0);
 
@@ -72,13 +72,13 @@ namespace DAL.Test
             string jpIII = "Jurassic Park III";
             Movie movie = new Movie() { Name = jurassicWorld, Rating = 4 };
             movie = movieRepo.AddMovie(movie);
-            movieRepo.Save();
+            unitOfWork.Save();
             movie.Name = jpIII;
             movieRepo.UpdateMovie(movie);
-            movieRepo.Save();
+            unitOfWork.Save();
             bool success = movieRepo.GetMovieByName(jpIII) != null ? true : false ;
             movieRepo.DeleteMovie(movie.Id);
-            movieRepo.Save();
+            unitOfWork.Save();
 
             Assert.IsTrue(success);
 
@@ -89,10 +89,10 @@ namespace DAL.Test
         {
             Movie movie = new Movie() { Name = jurassicWorld, Rating = 4 };
             movie = movieRepo.AddMovie(movie);
-            movieRepo.Save();
+            unitOfWork.Save();
             bool success = movieRepo.GetMovieByName(jurassicWorld) != null ? true : false;
             movieRepo.DeleteMovie(movie.Id);
-            movieRepo.Save();
+            unitOfWork.Save();
             success = success && movieRepo.GetMovieByName(jurassicWorld) == null ? true : false;
 
             Assert.IsTrue(success);

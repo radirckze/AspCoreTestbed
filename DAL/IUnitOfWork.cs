@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces;
+﻿using DAL.Model;
+using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,10 @@ namespace DAL
     {
 
         IMovieRepository MovieRepository { get; }
+
+        IGenericRepository<Character> CharacterRepository { get; }
+
+        void Save();
 
     }
 }

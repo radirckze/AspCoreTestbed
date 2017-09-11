@@ -16,7 +16,7 @@
     <None Include="appsettings.json" CopyToPublishDirectory="Always" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dal\DAL.csproj" />
+    <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
 </Project>

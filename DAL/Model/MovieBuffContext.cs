@@ -19,9 +19,7 @@ namespace DAL.Model
             {
                 entity.ToTable("character");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -62,9 +60,7 @@ namespace DAL.Model
                 entity.HasIndex(e => e.CharacterId)
                     .HasName("IX_character");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CharacterId).HasColumnName("character_id");
 

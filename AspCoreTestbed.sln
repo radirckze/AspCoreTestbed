@@ -4,7 +4,7 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "dal\DAL.csproj", "{090B69AB-EDD6-4776-BB90-D077EA6AAE46}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dal.test", "dal.test\dal.test.csproj", "{89927B2A-8C00-43DB-9040-1704E8D654BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.Test", "dal.test\DAL.Test.csproj", "{89927B2A-8C00-43DB-9040-1704E8D654BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
