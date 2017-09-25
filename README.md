@@ -76,7 +76,7 @@ optionsBuilder.UseSqlServer(Configuration["ConnectionStrings:MovieBuffDatabase"]
 
 
 ## useful commands
-To add/remove a project from a solution:
+To add/remove a project to a solution:
 > dotnet sln add/remove rel-path\proj.csproj
 
 
@@ -84,9 +84,17 @@ To add/remove a project from a solution:
 
 EF documentation home: https://docs.microsoft.com/en-us/ef/#pivot=efcore
 EF Core 2.0 quick overview: https://docs.microsoft.com/en-us/ef/core/  
+
 Repository / UOW pattern: https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
 .NET CLI for EF: https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet
-http://www.learnentityframeworkcore.com/walkthroughs/existing-database
+http://www.learnentityframeworkcore.com/walkthroughs/existing-database  
+
+MVC:
+https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro
+Razor:
+https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor
+https://media.readthedocs.org/pdf/mvc/latest/mvc.pdf
+ASP partial page updates: https://docs.microsoft.com/en-us/aspnet/web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax  
 
 Configuration:
 https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration

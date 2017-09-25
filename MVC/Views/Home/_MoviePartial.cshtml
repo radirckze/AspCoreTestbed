@@ -1,0 +1,31 @@
+﻿@using DAL.Model   
+
+<asp:ScriptManager ID="ScriptManager1" runat="server" />
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+        <h3>Placeholder for Student partial page!</h3>
+        <p>The current time is @DateTime.Now</p>
+        <table id="movietable" class="table">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Rating</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Movie movie in ViewBag.movies)
+                {
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => movie.Id)</td>
+                        <td> @Html.DisplayFor(modelItem => movie.Name)</td>
+                        <td> @Html.DisplayFor(modelItem => movie.Rating)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="button" onclick="addNewMovie()">Add New Movie</button>
+        @*<button type="button" onclick="saveNewMovies()">Save</button>*@
+        <button type="button" onclick="location.href='@Url.Action("Temp", "Home")'">Update</button>
+    </ContentTemplate>
+</asp:UpdatePanel>

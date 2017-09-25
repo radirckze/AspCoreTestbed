@@ -1,0 +1,32 @@
+﻿@using DAL.Model
+@model IEnumerable<DAL.Model.Character>
+
+
+<div>
+    <h3>Character Page</h3>
+    <hr />
+    <table id="charactrtable" class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Character character in Model)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(modelItem => character.Id)</td>
+                    <td> @Html.DisplayFor(modelItem => character.Name)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <p><i>Add new character</i></p>
+    <form action="/Characters" method="post">
+        <input type="text" name="Name" value="Name" />
+        <input type="submit" value="Submit" />
+    </form>
+
+</div>

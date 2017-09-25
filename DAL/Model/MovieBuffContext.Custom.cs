@@ -16,7 +16,7 @@ namespace  DAL.Model
                 
                 var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
+                .AddJsonFile("customsettings.json");
 
                 IConfigurationRoot Configuration = builder.Build();
                 optionsBuilder.UseSqlServer(Configuration["ConnectionStrings:MovieBuffDatabase"]);

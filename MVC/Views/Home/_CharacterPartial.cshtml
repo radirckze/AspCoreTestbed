@@ -1,0 +1,22 @@
+﻿@using DAL.Model
+<h3>Placeholder for Character partial page!</h3>
+<p>The current time is @DateTime.Now</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Character character in ViewBag.characters)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => character.Id)</td>
+                <td> @Html.DisplayFor(modelItem => character.Name)</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+    
         {
             "name": ".NET Core Attach",
             "type": "coreclr",
@@ -19,13 +20,13 @@
             "console": "internalConsole"
         },
         {
-            "name": ".NET Core Launch (web)",
+            "name": "The MVC App (.NET Core)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceRoot}/bin/Debug/<insert-target-framework-here>/<insert-project-name-here>.dll",
+            //"preLaunchTask": "build",
+            "program": "${workspaceRoot}/MVC/bin/Debug/netcoreapp2.0/MVC.dll",
             "args": [],
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}/MVC",
             "stopAtEntry": false,
             "launchBrowser": {
                 "enabled": true,
@@ -45,7 +46,7 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
             "sourceFileMap": {
-                "/Views": "${workspaceRoot}/Views"
+                "/Views": "${workspaceRoot}/MVC/Views"
             }
         },
         {
