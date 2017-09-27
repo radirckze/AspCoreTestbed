@@ -1,9 +1,4 @@
-# AspCoreTestbed  
-
-### Next steps (TBD):
-Completed: EF Core (DB frist) setup, ASP Core, Repository / UOW pattern, MS Test setup.   
-Todo: MVC with Anguar / JQuery front end, MVC routing (explicit) , IOC/DI for testing / logging 
- 
+# AspCoreTestbed   
 
 This project is used to test various ASP .NET code related stuff, including:  
 * Playground for ASP .NET core / MVC
@@ -11,6 +6,13 @@ This project is used to test various ASP .NET code related stuff, including:
 * Repository / UnitOfWork pattern (both named and generic repositories)
 
 Problem:  Movie Buff, that is movies, movie chatacters and quotes.  
+
+### Next steps (TBD):   
+Todo: 
+Complete MVC front end 
+Add Async version of DAL
+Add Anguar / JQuery front end (use async)  
+Add IOC/DI for testing / logging 
 
 ## Project Structure
 MovieBuff.Service - the MVC project  

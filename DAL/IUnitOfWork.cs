@@ -9,9 +9,11 @@ namespace DAL
     public interface IUnitOfWork
     {
 
-        IMovieRepository MovieRepository { get; }
+        IGenericRepository<Movie> MovieRepository { get; }
 
-        IGenericRepository<Character> CharacterRepository { get; }
+        ICharacterRepository CharacterRepository { get; }
+
+        IQuoteRepository QuoteRepository { get; }
 
         void Save();
 

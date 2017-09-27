@@ -1,5 +1,5 @@
 ﻿@using DAL.Model
-@model IEnumerable<DAL.Model.Character>
+@model IEnumerable<DAL.Model.Mcharacter>
 
 
 <div>
@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Character character in Model)
+            @foreach (Mcharacter character in Model)
             {
                 <tr>
                     <td> @Html.DisplayFor(modelItem => character.Id)</td>

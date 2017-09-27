@@ -7,13 +7,13 @@ namespace DAL.Model
     {
         public Movie()
         {
-            Quote = new HashSet<Quote>();
+            AppearsIn = new HashSet<AppearsIn>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public byte? Rating { get; set; }
 
-        public ICollection<Quote> Quote { get; set; }
+        public ICollection<AppearsIn> AppearsIn { get; set; }
     }
 }

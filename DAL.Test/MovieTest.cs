@@ -13,53 +13,45 @@ namespace DAL.Test
     public class MovieTest
     {
         //private MovieBuffContext context = null;
-        IUnitOfWork unitOfWork = null;
-        private IMovieRepository movieRepo = null;
-        string jurassicPark = "Jurassic Park";
-        string jurassicWorld = "Jurassic World";
-        private Movie movieJP = null;
+        static IUnitOfWork unitOfWork = null;
+        private static IGenericRepository<Movie> movieRepo = null;
+        static string jurassicPark = "Jurassic Park";
+        static string jurassicWorld = "Jurassic World";
+        static private Movie movieJP = null;
 
-        [TestInitialize]
-        public void TestInit()
+        [ClassInitialize]
+        public static void TestInit(TestContext tc)
         {
             unitOfWork = new UnitOfWork();
             movieRepo = unitOfWork.MovieRepository;
 
-            movieJP = movieRepo.AddMovie(new Movie() { Name = jurassicPark, Rating = 4 });
+            movieJP = movieRepo.AddEntity(new Movie() { Name = jurassicPark, Rating = 4 });
             unitOfWork.Save();
         }
 
-        [TestCleanup]
-        public void TestCleanup()
+        [ClassCleanup]
+        public static void TestCleanup()
         {
-            movieRepo.DeleteMovie(movieJP.Id);
+            movieRepo.DeleteEntity(movieJP.Id);
             unitOfWork.Save();
         }
 
         [TestMethod]
         public void GetMovies()
         {
-            IEnumerable<Movie> movies = movieRepo.GetMovies();
+            IEnumerable<Movie> movies = movieRepo.GetEntities();
             Assert.IsTrue(movies != null && movies.Count() > 0);
-        }
-
-        [TestMethod]
-        public void GetMovieByName()
-        {
-            Movie movie = movieRepo.GetMovieByName(jurassicPark);
-            Assert.IsTrue(movie != null && movie.Name.Equals(jurassicPark)) ;
         }
 
         [TestMethod]
         public void AddMovie()
         {
             Movie movie = new Movie() { Name = jurassicWorld, Rating = 4 };
-            movieRepo.AddMovie(movie);
+            movie = movieRepo.AddEntity(movie);
             unitOfWork.Save();
-            movie = movieRepo.GetMovieByName(jurassicWorld);
             if (movie.Id > 0 )
             {
-                movieRepo.DeleteMovie(movie.Id);
+                movieRepo.DeleteEntity(movie.Id);
                 unitOfWork.Save();
             }
             Assert.IsTrue(movie != null && movie.Id > 0);
@@ -71,13 +63,14 @@ namespace DAL.Test
         {
             string jpIII = "Jurassic Park III";
             Movie movie = new Movie() { Name = jurassicWorld, Rating = 4 };
-            movie = movieRepo.AddMovie(movie);
+            movie = movieRepo.AddEntity(movie);
             unitOfWork.Save();
             movie.Name = jpIII;
-            movieRepo.UpdateMovie(movie);
+            movieRepo.UpdateEntity(movie);
             unitOfWork.Save();
-            bool success = movieRepo.GetMovieByName(jpIII) != null ? true : false ;
-            movieRepo.DeleteMovie(movie.Id);
+            movie = movieRepo.GetEntityById(movie.Id);
+            bool success = movie.Name.Equals(jpIII);
+            movieRepo.DeleteEntity(movie.Id);
             unitOfWork.Save();
 
             Assert.IsTrue(success);
@@ -88,12 +81,13 @@ namespace DAL.Test
         public void DeleteMovie()
         {
             Movie movie = new Movie() { Name = jurassicWorld, Rating = 4 };
-            movie = movieRepo.AddMovie(movie);
+            movie = movieRepo.AddEntity(movie);
             unitOfWork.Save();
-            bool success = movieRepo.GetMovieByName(jurassicWorld) != null ? true : false;
-            movieRepo.DeleteMovie(movie.Id);
+            bool success = movieRepo.GetEntityById(movie.Id) != null;
+            int movieId = movie.Id;
+            movieRepo.DeleteEntity(movie.Id);
             unitOfWork.Save();
-            success = success && movieRepo.GetMovieByName(jurassicWorld) == null ? true : false;
+            success = success && movieRepo.GetEntityById(movieId) == null;
 
             Assert.IsTrue(success);
 

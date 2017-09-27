@@ -10,7 +10,6 @@ namespace DAL.Model
         public int CharacterId { get; set; }
         public int MovieId { get; set; }
 
-        public Character Character { get; set; }
-        public Movie Movie { get; set; }
+        public AppearsIn AppearsIn { get; set; }
     }
 }

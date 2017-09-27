@@ -24,8 +24,8 @@ namespace MVC.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            IGenericRepository<Character> characterRepo = unitOfWork.CharacterRepository;
-            IEnumerable<Character> characters = characterRepo.GetEntities();
+            ICharacterRepository characterRepo = unitOfWork.CharacterRepository;
+            IEnumerable<Mcharacter> characters = characterRepo.GetCharacters();
 
             return View(characters);
         }
@@ -34,15 +34,15 @@ namespace MVC.Controllers
         [Route("Create")]
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Name")] Character character)
+        public IActionResult Create([Bind("Name")] Mcharacter character)
         //public IActionResult Movie(string name, int rating)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    IGenericRepository<Character> characterRepo = unitOfWork.CharacterRepository;
-                    character = characterRepo.AddEntity(character);
+                    ICharacterRepository characterRepo = unitOfWork.CharacterRepository;
+                    character = characterRepo.AddCharacter(character);
                     unitOfWork.Save();
                     return RedirectToAction("Index");
                 }

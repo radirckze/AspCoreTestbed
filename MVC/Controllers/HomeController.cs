@@ -29,11 +29,11 @@ namespace MVC.Controllers
             new Movie() {Id=101, Name="Movie-2", Rating=4}
 
         };
-        private List<Character> characters = new List<Character>()
+        private List<Mcharacter> characters = new List<Mcharacter>()
         {
-            new Character() {Id=100, Name="Character-1"},
-            new Character() {Id=101, Name="Character-2"},
-            new Character() {Id=102, Name="Character-3"}
+            new Mcharacter() {Id=100, Name="Character-1"},
+            new Mcharacter() {Id=101, Name="Character-2"},
+            new Mcharacter() {Id=102, Name="Character-3"}
         };
 
         [HttpGet("")]
@@ -67,8 +67,8 @@ namespace MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    IMovieRepository movieRepo = unitOfWork.MovieRepository;
-                    movie = movieRepo.AddMovie(movie);
+                    IGenericRepository<Movie> movieRepo = unitOfWork.MovieRepository;
+                    movie = movieRepo.AddEntity(movie);
                     unitOfWork.Save();
                     return RedirectToAction("Index");
                 }

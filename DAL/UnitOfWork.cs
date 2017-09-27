@@ -11,33 +11,47 @@ namespace DAL
     {
 
         private MovieBuffContext mbContext = new MovieBuffContext();
-        private IMovieRepository movieRepository = null;
-        private IGenericRepository<Character> characterRepository = null;
+        private IGenericRepository<Movie> movieRepository = null;
+        private ICharacterRepository characterRepository = null;
+        private IQuoteRepository quoteRepository = null;
         private bool disposed = false;
 
-        public IMovieRepository MovieRepository
+        public ICharacterRepository CharacterRepository
+        {
+            get
+            {
+                if (characterRepository == null)
+                {
+                    characterRepository = new CharacterRepository(mbContext);
+                }
+
+                return characterRepository;
+            }
+        }
+
+        public IGenericRepository<Movie> MovieRepository
         {
             get
             {
                 if (movieRepository == null)
                 {
-                    movieRepository = new MovieRepository(mbContext);
+                    movieRepository = new GenericRepository<Movie>(mbContext);
                 }
 
                 return movieRepository;
             }
         }
 
-        public IGenericRepository<Character> CharacterRepository
+        public IQuoteRepository QuoteRepository
         {
             get
             {
-                if (characterRepository == null)
+                if (quoteRepository == null)
                 {
-                    characterRepository = new GenericRepository<Character>(mbContext);
+                    quoteRepository = new QuoteRepository(mbContext);
                 }
 
-                return characterRepository;
+                return quoteRepository;
             }
         }
 

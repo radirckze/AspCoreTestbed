@@ -24,8 +24,8 @@ namespace MVC.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            IMovieRepository movieRepo = unitOfWork.MovieRepository;
-            IEnumerable<Movie> movies = movieRepo.GetMovies();
+            IGenericRepository<Movie> movieRepo = unitOfWork.MovieRepository;
+            IEnumerable<Movie> movies = movieRepo.GetEntities();
 
             return View(movies);
         }
@@ -41,8 +41,8 @@ namespace MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    IMovieRepository movieRepo = unitOfWork.MovieRepository;
-                    movie = movieRepo.AddMovie(movie);
+                    IGenericRepository<Movie> movieRepo = unitOfWork.MovieRepository;
+                    movie = movieRepo.AddEntity(movie);
                     unitOfWork.Save();
                     return RedirectToAction("Index");
                 }

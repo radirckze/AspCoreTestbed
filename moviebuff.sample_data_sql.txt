@@ -1,0 +1,78 @@
+USE [moviebuff]
+GO
+
+INSERT INTO dbo.movie (name ,rating)
+VALUES ('Pirates of the Caribbean: Curse of the Black Perl' , 5)
+
+DECLARE @M1ID INT
+SELECT @M1ID =  SCOPE_IDENTITY();
+
+INSERT INTO dbo.movie (name ,rating)
+VALUES ('Pirates of the Caribbean: Dead Man''s Chest' , 5)
+
+
+DECLARE @M2ID INT
+SELECT @M2ID =  SCOPE_IDENTITY();
+
+
+INSERT INTO dbo.movie (name ,rating)
+VALUES ('Pirates of the Caribbean: At World''s End' , 4)
+
+
+DECLARE @M3ID INT
+SELECT @M3ID =  SCOPE_IDENTITY();
+
+INSERT INTO dbo.mcharacter (name)
+VALUES ('Jack Sparrow')
+
+
+DECLARE @C1ID INT
+SELECT @C1ID =  SCOPE_IDENTITY();
+
+INSERT INTO dbo.mcharacter (name)
+VALUES ('Hector Barbossa')
+
+
+DECLARE @C2ID INT
+SELECT @C2ID =  SCOPE_IDENTITY();
+
+INSERT INTO dbo.mcharacter (name)
+VALUES ('Elisabeth Swann')
+
+
+DECLARE @C3ID INT
+SELECT @C3ID =  SCOPE_IDENTITY();
+
+INSERT INTO dbo.appears_in (movie_id, character_id)
+VALUES (@M1ID, @C1ID), (@M2ID, @C1ID), (@M3ID, @C1ID)
+
+INSERT INTO dbo.appears_in (movie_id, character_id)
+VALUES (@M1ID, @C2ID), (@M2ID, @C2ID), (@M3ID, @C2ID)
+
+INSERT INTO dbo.appears_in (movie_id, character_id)
+VALUES (@M1ID, @C3ID), (@M2ID, @C3ID), (@M3ID, @C3ID)
+
+
+INSERT INTO dbo.quote (quote ,character_id ,movie_id)
+VALUES ('Why is the rum gone?', @C1ID, @M1ID)
+
+INSERT INTO dbo.quote (quote ,character_id ,movie_id)
+VALUES ('Me, I''m dishonest. And a dishonest man you can always trust to be dishonest.', @C1ID, @M1ID)
+
+INSERT INTO dbo.quote (quote ,character_id ,movie_id)
+VALUES ('I think it would be rather exciting to meet a pirate.', @C3ID, @M1ID)
+
+INSERT INTO dbo.quote (quote ,character_id ,movie_id)
+VALUES ('You like pain? Try wearing a corset.', @C3ID, @M1ID)
+
+INSERT INTO dbo.quote (quote ,character_id ,movie_id)
+VALUES ('Ye''d best start believin'' in ghost stories, Miss Turner. Yer in one!', @C2ID, @M1ID)
+
+INSERT INTO dbo.quote (quote ,character_id ,movie_id)
+VALUES ('You can mistrust me less than you can mistrust him, trust me.', @C1ID, @M1ID)
+
+INSERT INTO dbo.quote (quote ,character_id ,movie_id)
+VALUES ('My tremendous intuitive sense of the female creature informs me that you are troubled.', @C1ID, @M2ID)
+
+INSERT INTO dbo.quote (quote ,character_id ,movie_id)
+VALUES ('Consider into your calculations that you robbed me of my wedding night.', @C3ID, @M2ID)

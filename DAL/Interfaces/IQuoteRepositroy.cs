@@ -10,6 +10,7 @@ namespace DAL.Interfaces
         IEnumerable<Quote> GetQuotesByMovie(int movieId);
         IEnumerable<Quote> GetQuotesByCharacter(int characterId);
         Quote AddQuote(Quote quote);
-        void Save();
+        void DeleteQuote(int quoteId);
+        //void Save();
     }
 }

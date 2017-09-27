@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace DAL.Model
 {
-    public partial class Character
+    public partial class Mcharacter
     {
-        public Character()
+        public Mcharacter()
         {
-            Quote = new HashSet<Quote>();
+            AppearsIn = new HashSet<AppearsIn>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Quote> Quote { get; set; }
+        public ICollection<AppearsIn> AppearsIn { get; set; }
     }
 }

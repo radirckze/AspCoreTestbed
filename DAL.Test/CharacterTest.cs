@@ -15,38 +15,38 @@ namespace dal.test
     public class CharacterTest
     {
         //private MovieBuffContext context = null;
-        IUnitOfWork unitOfWork = null;
-        private IGenericRepository<Character> characterRepo = null;
-        private IMovieRepository movieRepo = null;
-        Movie jPark = null;
-        Character jHammond = null;
+        static IUnitOfWork unitOfWork = null;
+        private static IGenericRepository<Movie> movieRepo = null;
+        private static ICharacterRepository characterRepo = null;
+        static Movie jPark = null;
+        static Mcharacter jHammond = null;
 
-        [TestInitialize]
-        public void TestInit()
+        [ClassInitialize]
+        public static void TestInit(TestContext tc)
         {
             unitOfWork = new UnitOfWork();
             characterRepo = unitOfWork.CharacterRepository;
             movieRepo = unitOfWork.MovieRepository;
 
-            jPark = movieRepo.AddMovie(new Movie() { Name = "Jurassic Park", Rating = 4 });
-            jHammond = new Character() { Name = "John Hammond" };
-            characterRepo.AddEntity(jHammond);
+            jPark = movieRepo.AddEntity(new Movie() { Name = "Jurassic Park", Rating = 4 });
+            jHammond = new Mcharacter() { Name = "John Hammond" };
+            characterRepo.AddCharacter(jHammond);
             unitOfWork.Save();
 
         }
 
-        [TestCleanup]
-        public void TestCleanup()
+        [ClassCleanup]
+        public static void TestCleanup()
         {
-            movieRepo.DeleteMovie(jPark.Id);
-            characterRepo.DeleteEntity(jHammond.Id);
+            movieRepo.DeleteEntity(jPark.Id);
+            characterRepo.DeleteCharacter(jHammond.Id);
             unitOfWork.Save();
         }
 
         [TestMethod]
         public void GetCharacters()
         {
-            IEnumerable<Character> characters = characterRepo.GetEntities();
+            IEnumerable<Mcharacter> characters = characterRepo.GetCharacters();
             Assert.IsTrue(characters != null && characters.Count() > 0);
         }
 
@@ -54,13 +54,13 @@ namespace dal.test
         public void AddCharacter()
         {
             bool testStatus = false;
-            Character iMalcolm = new Character() { Name = "Ian Malcolm" };
-            iMalcolm = characterRepo.AddEntity(iMalcolm);
+            Mcharacter iMalcolm = new Mcharacter() { Name = "Ian Malcolm" };
+            iMalcolm = characterRepo.AddCharacter(iMalcolm);
             unitOfWork.Save();
-            if (characterRepo.GetEntityById(iMalcolm.Id) != null)
+            if (iMalcolm.Id > 0)
             {
                 testStatus = true;
-                characterRepo.DeleteEntity(iMalcolm.Id);
+                characterRepo.DeleteCharacter(iMalcolm.Id);
                 unitOfWork.Save();
             }
             Assert.IsTrue(testStatus);
@@ -70,15 +70,16 @@ namespace dal.test
         public void DeleteCharacter()
         {
             bool testStatus = false;
-            Character eSattler = new Character() { Name = "Ellie Sattler" };
-            eSattler = characterRepo.AddEntity(eSattler);
+            string eSattlerName = "Ellie Sattler";
+            Mcharacter eSattler = new Mcharacter() { Name = eSattlerName };
+            eSattler = characterRepo.AddCharacter(eSattler);
             unitOfWork.Save();
-            if (characterRepo.GetEntityById(eSattler.Id) != null)
+            if (eSattler.Id > 0)
             {
                 testStatus = true;
-                characterRepo.DeleteEntity(eSattler.Id);
+                characterRepo.DeleteCharacter(eSattler.Id);
                 unitOfWork.Save();
-                testStatus = testStatus & (characterRepo.GetEntityById(eSattler.Id) == null);
+                testStatus = testStatus & (characterRepo.GetCharacterByName(eSattlerName) == null);
             }
             Assert.IsTrue(testStatus);
         }
